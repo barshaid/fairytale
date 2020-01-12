@@ -37,7 +37,7 @@ public class LevelGenerator : MonoBehaviour
 
 		foreach (ColorToPrefab colorMapping in colorMappings)
 		{
-			Vector2 position = new Vector2(x*5, y);
+			Vector2 position = new Vector2(x*5, y*2.5f);
 			Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
 			if (colorMapping.color.Equals(pixelColor))
 			{
