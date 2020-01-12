@@ -7,7 +7,8 @@ public class LevelGenerator : MonoBehaviour
 
 	public ColorToPrefab[] colorMappings;
 
-	// Use this for initialization
+	int count=0;
+
 	void Start()
 	{
 		GenerateLevel();
@@ -20,8 +21,10 @@ public class LevelGenerator : MonoBehaviour
 			for (int y = 0; y < map.height; y++)
 			{
 				GenerateTile(x, y);
+				count++;
 			}
 		}
+		Debug.Log(count);
 	}
 
 	void GenerateTile(int x, int y)
@@ -29,21 +32,17 @@ public class LevelGenerator : MonoBehaviour
 		Color pixelColor = map.GetPixel(x, y);
 
 		if (pixelColor.a == 0)
-		{
-			Debug.Log("transparent");
-			// The pixel is transparrent. Let's ignore it!
 			return;
-		}
+		
 
 		foreach (ColorToPrefab colorMapping in colorMappings)
 		{
-			Vector2 position = new Vector2(x*5, y*2.5f);
-			Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
-			if (colorMapping.color.Equals(pixelColor))
+			Debug.Log(pixelColor);
+			Debug.Log(colorMapping.color);
+			if (colorMapping.color == pixelColor)
 			{
-				
-				//Vector2 position = new Vector2(x, y);
-				//Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+				Vector2 position = new Vector2(x, y);
+				Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
 			}
 		}
 	}
