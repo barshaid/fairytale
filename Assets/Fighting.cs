@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Fighting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    public  float HP=5;
+
 
     // Update is called once per frame
     void Update()
