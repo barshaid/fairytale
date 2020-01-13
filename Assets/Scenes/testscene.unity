@@ -1700,13 +1700,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da27fdba52d3c2842b96020f4750465a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2800000, guid: dc072bc1a91166a45bdbf82387d9f59e, type: 3}
+  map: {fileID: 2800000, guid: b3a594de30e247e41aeed28fe024292d, type: 3}
   colorMappings:
-  - color: {r: 0, g: 0, b: 0, a: 0}
-    prefab: {fileID: 6889603967114756044, guid: 93771758b5195e34990d53d71d6a1e99,
+  - color: {r: 0, g: 0.37254903, b: 1, a: 1}
+    prefab: {fileID: 5594809524165372495, guid: 4a1621420b57ae64187076e464ef3d43,
       type: 3}
-  - color: {r: 1, g: 0, b: 0, a: 0}
-    prefab: {fileID: 7244439380411647090, guid: 49d66cb2ccf8f87459fd7bf5a3293316,
+  - color: {r: 1, g: 0, b: 0, a: 1}
+    prefab: {fileID: 6889603967114756044, guid: 93771758b5195e34990d53d71d6a1e99,
       type: 3}
 --- !u!4 &1085426352
 Transform:

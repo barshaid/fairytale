@@ -7,10 +7,8 @@ public class LevelGenerator : MonoBehaviour
 
 	public ColorToPrefab[] colorMappings;
 
-	int count=0;
-
 	void Start()
-	{
+	{   
 		GenerateLevel();
 	}
 
@@ -21,10 +19,8 @@ public class LevelGenerator : MonoBehaviour
 			for (int y = 0; y < map.height; y++)
 			{
 				GenerateTile(x, y);
-				count++;
 			}
 		}
-		Debug.Log(count);
 	}
 
 	void GenerateTile(int x, int y)
@@ -37,8 +33,6 @@ public class LevelGenerator : MonoBehaviour
 
 		foreach (ColorToPrefab colorMapping in colorMappings)
 		{
-			Debug.Log(pixelColor);
-			Debug.Log(colorMapping.color);
 			if (colorMapping.color == pixelColor)
 			{
 				Vector2 position = new Vector2(x, y);
