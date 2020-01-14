@@ -36,7 +36,7 @@ Note: You must never re-use game objects in the parallax, instead create a secon
 - Setup the repositioning logic. The reposition mode contains 4 possible options:
    Wrap Anchor Bottom : The layer will be seamless and fill the entire width (or height if vertical) and be anchored to the bottom of the screen
    Wrap Anchor Top : The layer will be seamless and fill the entire width (or height if vertical) and be anchored to the top of the screen
-   Wrap Anchor None : The layer will be seamless and fill the entire width (or height if vertical) and maintain the original x or y position
+   Wrap Anchor None : The layer will be seamless andx fill the entire width (or height if vertical) and maintain the original x or y position
    Individual Start On Screen : The layer contains individual objects, and they all start wherever they are placed in the scene designer
    Individual Start Off Screen : The layer contains individual objects, and they start off screen
 Note: For the wrapping modes, only one graphic is required. Free Parallax will add a second graphic for you automatically to ensure a seamless parallax

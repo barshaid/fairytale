@@ -13,10 +13,9 @@ public delegate void FreeParallaxElementRepositionLogicFunction(FreeParallax p, 
 
 public class FreeParallax : MonoBehaviour
 {
-    [Tooltip("Camera to use for the parallax. Defaults to main camera.")]
     public Camera parallaxCamera;
+    public GameObject player;
 
-    [Tooltip("The speed at which the parallax moves, which will likely be opposite from the speed at which your character moves. Elements can be set to move as a percentage of this value.")]
     public float Speed = 2.0f;
 
     [Tooltip("The elements in the parallax.")]
@@ -151,6 +150,7 @@ public class FreeParallax : MonoBehaviour
     void Update()
     {
         float t = Time.deltaTime * Speed;
+        if(player.GetComponent<Animator>().GetFloat("speed")!=0)
         foreach (FreeParallaxElement e in Elements)
         {
             e.Update(this, t, parallaxCamera);
@@ -215,7 +215,7 @@ public class FreeParallaxElement
     public List<GameObject> GameObjects;
 
     [Tooltip("The speed at which this object moves in relation to the speed of the parallax.")]
-    [Range(0.0f, 1.0f)]
+    [Range(-1.0f, 1.0f)]
     public float SpeedRatio;
 
     [Tooltip("Contains logic on how this object repositions itself when moving off screen.")]

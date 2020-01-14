@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     Rigidbody2D rb;
-    public Transform _groundCheck;
     bool _canJump, _canWalk;
     bool _isWalk, _isJump;
     RaycastHit2D _hit;
@@ -20,30 +19,24 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, _groundCheck.position);
-    }
 
     void Update()
     {
         dir = CrossPlatformInputManager.GetAxis("Horizontal") * moveSpeed;
         rb.velocity = new Vector2(dir, rb.velocity.y);
 
-        if (CrossPlatformInputManager.GetButtonDown("Jump") && rb.velocity.y<0.001 && rb.velocity.y>-0.001)
+        if (CrossPlatformInputManager.GetAxis("Horizontal") == 0)
         {
-            rb.AddForce(Vector2.up * 500f);
+            GetComponent<Animator>().SetFloat("speed", 0);
         }
 
-        if (_hit = Physics2D.Linecast(new Vector2(_groundCheck.position.x, _groundCheck.position.y + 0.2f), _groundCheck.position))
+        GetComponent<Animator>().SetFloat("speed", Mathf.Abs(CrossPlatformInputManager.GetAxis("Horizontal")));
+
+        if (CrossPlatformInputManager.GetButtonDown("Jump") && rb.velocity.y<0.001 && rb.velocity.y>-0.001)
         {
-            if (!_hit.transform.CompareTag("Player"))
-            {
-                _canJump = true;
-                _canWalk = true;
-            }
+            rb.AddForce(Vector2.up * 550f);
         }
-        else _canJump = false;
+
     }
 
 }
