@@ -35,7 +35,14 @@ public class LevelGenerator : MonoBehaviour
 		{
 			if (colorMapping.color == pixelColor)
 			{
-				Vector2 position = new Vector2(x, y);
+                Vector3 position;
+                if (colorMapping.prefab.tag == "ground")
+                
+                  position = new Vector3(x*5, y*0.5f, Random.Range(0, 3));
+                
+                else
+                     position = new Vector3(x*5, y*5);
+
 				Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
 			}
 		}
