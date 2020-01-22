@@ -13,6 +13,8 @@ public delegate void FreeParallaxElementRepositionLogicFunction(FreeParallax p, 
 
 public class FreeParallax : MonoBehaviour
 {
+    Vector2 curPos, prevPos;
+
     public Camera parallaxCamera;
     public GameObject player;
 
@@ -150,11 +152,19 @@ public class FreeParallax : MonoBehaviour
     void Update()
     {
         float t = Time.deltaTime * Speed;
-        if(player.GetComponent<Animator>().GetFloat("speed")!=0)
-        foreach (FreeParallaxElement e in Elements)
+
+        curPos = player.transform.position;
+
+        if (curPos != prevPos)
         {
-            e.Update(this, t, parallaxCamera);
+            foreach (FreeParallaxElement e in Elements)
+            {
+                e.Update(this, t, parallaxCamera);
+            }
         }
+        prevPos = curPos;
+
+          
     }
 }
 
