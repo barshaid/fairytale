@@ -15,7 +15,7 @@ public class Fish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector2.Distance(transform.position, player.transform.position));
+       
      
         if (Vector2.Distance(transform.position, player.transform.position) > d)
         {

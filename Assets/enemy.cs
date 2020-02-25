@@ -8,7 +8,8 @@ public class enemy : MonoBehaviour
     public float hp;
     Rigidbody2D rb;
     float knockbackcount;
-    
+    public GameObject player;
+    public float d;
 
     AstarPath astar;
 
@@ -26,11 +27,20 @@ public class enemy : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        
+        player = GameObject.Find("Player");
     }
 
     private void Update()
     {
+        if (Vector2.Distance(transform.position, player.transform.position) > d)
+        {
+            GetComponent<Pathfinding.AIPath>().canSearch = false;
+        }
+        else
+        {
+            GetComponent<Pathfinding.AIPath>().canSearch = true;
+        }
+    
         if (GetComponent<Pathfinding.AIPath>().desiredVelocity.x >= 0.01f)
         {
             transform.localScale = new Vector3(-1, 1, 1);

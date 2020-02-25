@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2647404742592165600}
   - component: {fileID: 2647404742414018252}
   - component: {fileID: 2647404742414018255}
+  - component: {fileID: 1696037516879050051}
   m_Layer: 0
   m_Name: fish
   m_TagString: enemy
@@ -32,7 +33,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3689839752871319895}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.91, y: 47.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 0}
+  target: {fileID: 4212451514899186982, guid: 019913615e811304ab144a6857e553b7, type: 3}
 --- !u!114 &2647404742592165603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ MonoBehaviour:
   version: 2
   radius: 2.76
   height: 2
-  repathRate: 0.05
+  repathRate: 0.001
   canSearch: 1
   canMove: 1
   maxSpeed: 7
@@ -199,11 +200,11 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 0.1
   endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
+  alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
+  whenCloseToDestination: 1
   constrainInsideGraph: 0
 --- !u!114 &2647404742592165600
 MonoBehaviour:
@@ -432,3 +433,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
+--- !u!114 &1696037516879050051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689839752871319895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e97c56c7cf76740848f0afd62afe9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4212451514899186980, guid: 019913615e811304ab144a6857e553b7, type: 3}
+  d: 50

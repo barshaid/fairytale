@@ -13,6 +13,14 @@ public class CaveLight : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            col.gameObject.GetComponentInChildren<Light>().intensity = 10f;
+            dirLight.intensity = 0;
+        }
+    }
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
