@@ -155,7 +155,7 @@ public class FreeParallax : MonoBehaviour
 
         curPos = player.transform.position;
 
-        if (curPos != prevPos)
+        if (curPos.x != prevPos.x)
         {
             foreach (FreeParallaxElement e in Elements)
             {

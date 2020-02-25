@@ -27,8 +27,7 @@ public class LevelGenerator : MonoBehaviour
 	void GenerateTile(int x, int y)
 	{
 		Color pixelColor = map.GetPixel(x, y);
-
-		if (pixelColor.a == 0)
+		if (pixelColor.a < 1)
 			return;
 		
 
@@ -37,14 +36,10 @@ public class LevelGenerator : MonoBehaviour
 			if (colorMapping.color == pixelColor)
 			{
                 Vector3 position;
-                if (colorMapping.prefab.tag == "ground")
-                
-                  position = new Vector3(x*5, y*0.5f, Random.Range(0, 3));
-                
-                else
-                     position = new Vector3(x*5, y*5);
+				
+                position = new Vector3(x*5, y*5);
 
-				Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+				Instantiate(colorMapping.prefab[Random.Range(0, colorMapping.prefab.Length)], position, Quaternion.identity, transform);
 			}
 		}
 	}

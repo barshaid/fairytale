@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class CaveLight : MonoBehaviour
 {
-    public Light dirLight;
-    public Light pLight;
+     Light dirLight;
 
-    
+
+    private void Start()
+    {
+        dirLight = FindObjectsOfType<Light>()[1];
+    }
+
+
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.name == "Player")
+        if (col.CompareTag("Player"))
         {
-             dirLight.intensity = 0;
-            pLight.intensity = 30f;
+            col.gameObject.GetComponentInChildren<Light>().intensity = 10f;
+            dirLight.intensity = 0;
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.name == "Player") { 
-        dirLight.intensity = 1;
-        pLight.intensity = 0f;
+        if (col.CompareTag("Player"))
+        {
+
+            col.gameObject.GetComponentInChildren<Light>().intensity = 0;
+            dirLight.intensity = 1;
     }
     }
     
