@@ -7,7 +7,7 @@ public class backgroundtiles : MonoBehaviour
 	public Texture2D map;
 
 	public ColorToPrefab[] colorMappings;
-
+	float d = 1;
 	void Start()
 	{
 		GenerateLevel();
@@ -27,6 +27,7 @@ public class backgroundtiles : MonoBehaviour
 
 	void GenerateTile(int x, int y)
 	{
+		d *= -1;
 		Color pixelColor = map.GetPixel(x, y);
 
 		if (pixelColor.a == 0)
@@ -35,11 +36,22 @@ public class backgroundtiles : MonoBehaviour
 
 		foreach (ColorToPrefab colorMapping in colorMappings)
 		{
+			d = d*  -1;
 			if (colorMapping.color == pixelColor)
 			{
 				Vector3 position;
-
-				position = new Vector3(x * 5, y * 5 -1, 1);
+				if (colorMapping.prefab[0].name.Substring(0, 1) == "w")
+				{
+					position = new Vector3(x * 5, y * 5, -10);
+				}
+				else if(colorMapping.prefab[0].name.Substring(0, 1) == "c")
+				{
+					position = new Vector3(x * 5, y * 5-10, 1);
+				}
+				else
+				{
+					position = new Vector3(x * 5, y * 5, d);
+				}
 
 				Instantiate(colorMapping.prefab[Random.Range(0, colorMapping.prefab.Length)], position, Quaternion.identity, transform);
 			}

@@ -11,6 +11,6 @@ public class camController : MonoBehaviour
     void Update()
     {
       
-       transform.position = new Vector3(Mathf.Clamp((player.position.x + offset.x), min, max), player.position.y + offset.y, offset.z); // Camera follows the player with specified offset position
+       transform.position = new Vector3(Mathf.Clamp((player.position.x + offset.x), min, max), Mathf.Clamp((player.position.y + offset.y), 0, 150), offset.z); // Camera follows the player with specified offset position
     }
 }

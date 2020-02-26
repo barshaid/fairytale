@@ -8,7 +8,16 @@ public class powerOrb : MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            col.GetComponent<combat>().hp++;
             Destroy(gameObject);
         }
+    }
+    void Update()
+    {
+        Vector3 curr = transform.localPosition;
+
+
+            curr = Vector3.up * Mathf.Cos(Time.time);
+        transform.localPosition = curr;
     }
 }

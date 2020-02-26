@@ -12,7 +12,8 @@ public class Movement : MonoBehaviour
     bool _isWalk, _isJump;
     Animator anim;
 
-    RaycastHit2D _hit;
+
+
     public LayerMask groundLayer;
 
 

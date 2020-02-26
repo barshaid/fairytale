@@ -387,6 +387,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
+  basepower: 1
+  power: 0
+  ice: 3
+  fire: 3
+  wind: 3
 --- !u!1 &7068788124121457160
 GameObject:
   m_ObjectHideFlags: 0
