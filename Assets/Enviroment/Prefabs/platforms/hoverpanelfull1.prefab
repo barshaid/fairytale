@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8223043061769077596}
   - component: {fileID: 2701218816648180902}
   - component: {fileID: 4037005639612449026}
+  - component: {fileID: 3423487859663291934}
   m_Layer: 8
   m_Name: hoverpanelfull1
   m_TagString: ground
@@ -88,7 +89,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746280135910398331}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -107,3 +108,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 3.01}
   m_EdgeRadius: 0
+--- !u!70 &3423487859663291934
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746280135910398331}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 6.55, y: 2.98}
+  m_Direction: 1

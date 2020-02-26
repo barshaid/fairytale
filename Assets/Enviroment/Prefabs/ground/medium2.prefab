@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6368925872018816948}
   - component: {fileID: 4329648687490715257}
   - component: {fileID: 8930973292375897201}
+  - component: {fileID: 2044163051016791291}
   m_Layer: 8
   m_Name: medium2
   m_TagString: ground
@@ -88,7 +89,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 171861855320250792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -107,6 +108,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 2.23}
   m_EdgeRadius: 0
+--- !u!70 &2044163051016791291
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171861855320250792}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09722098, y: -1.386078}
+  m_Size: {x: 6.194549, y: 2.2249062}
+  m_Direction: 1
 --- !u!1 &7594769995114445765
 GameObject:
   m_ObjectHideFlags: 0
