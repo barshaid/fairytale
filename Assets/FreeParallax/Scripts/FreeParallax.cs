@@ -154,7 +154,10 @@ public class FreeParallax : MonoBehaviour
         float t = Time.deltaTime * Speed;
 
         curPos = player.transform.position;
-
+        Vector2 y = transform.localPosition;
+        
+        y.y = player.transform.localPosition.y-3.2f;
+        transform.localPosition = y;
         if (curPos.x != prevPos.x)
         {
             foreach (FreeParallaxElement e in Elements)

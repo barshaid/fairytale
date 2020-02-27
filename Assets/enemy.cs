@@ -12,7 +12,7 @@ public class enemy : MonoBehaviour
     public float d;
     bool isfrozen = false;
    // AstarPath astar;
-    float power = 1;
+    public float power = 1;
     float speed;
     float scale;
 
@@ -55,10 +55,12 @@ public class enemy : MonoBehaviour
 
     private void Start()
     {
+        transform.localScale *= (Random.Range(5.0f, 15.0f) / 10.0f);
         scale = transform.localScale.x;
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
         GetComponent<Pathfinding.AIPath>().maxSpeed = GetComponent<Pathfinding.AIPath>().maxSpeed / transform.localScale.x;
+        power = transform.localScale.x / power;
     }
 
     private void Update()

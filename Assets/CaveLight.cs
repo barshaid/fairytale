@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CaveLight : MonoBehaviour
 {
-     Light dirLight;
+    
+    public Light dirLight;
+    Light pLight;
 
 
     private void Start()
     {
-        dirLight = FindObjectsOfType<Light>()[0];
+        dirLight = GameObject.Find("Directional Light").GetComponent<Light>();
+        pLight= GameObject.Find("Player").GetComponentInChildren<Light>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -17,7 +20,7 @@ public class CaveLight : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             dirLight.intensity = 0;
-            col.gameObject.GetComponentInChildren<Light>().intensity = 10f;
+            pLight.intensity = 10f;
 
         }
     }
@@ -27,7 +30,7 @@ public class CaveLight : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             dirLight.intensity = 0;
-            col.gameObject.GetComponentInChildren<Light>().intensity = 10f;
+            pLight.intensity = 10f;
             
         }
     }
@@ -37,7 +40,7 @@ public class CaveLight : MonoBehaviour
         if (col.CompareTag("Player"))
         {
 
-            col.gameObject.GetComponentInChildren<Light>().intensity = 0;
+            pLight.intensity = 0;
             dirLight.intensity = 1;
     }
     }

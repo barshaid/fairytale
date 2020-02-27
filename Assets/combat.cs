@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class combat : MonoBehaviour
 {
+    float knockbackcount;
     public float hp = 5;
     public float basepower=1;
     public float power;
@@ -34,6 +35,20 @@ public class combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (knockbackcount <= 0)
+        {
+           
+        }
+        else
+        {
+            
+
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-GetComponent<Rigidbody2D>().velocity.x * 1.5f, -GetComponent<Rigidbody2D>().velocity.x);
+
+            knockbackcount -= Time.deltaTime;
+        }
+
         //GetComponentInChildren<SpriteRenderer>().color = Color.green;
         if (GetComponentInChildren<SpriteRenderer>().color == Color.white)
         {
@@ -93,8 +108,8 @@ public class combat : MonoBehaviour
     {
         if (col.gameObject.CompareTag("enemy"))
         {
-
-            hp--;
+            knockbackcount = 0.5f;
+            hp -= col.gameObject.GetComponent<enemy>().power;
         }
     }
 }

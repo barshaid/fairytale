@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     bool _isWalk, _isJump;
     Animator anim;
 
+    public float fallMult=2.5f;
+    public float lowJumpMult = 2f;
 
 
     public LayerMask groundLayer;
@@ -42,7 +44,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 4.3f), Vector2.down, Color.red);
-
+        
         if (start)
         {
             dir = CrossPlatformInputManager.GetAxis("Horizontal") * moveSpeed;
@@ -77,10 +79,25 @@ public class Movement : MonoBehaviour
 
             if (CrossPlatformInputManager.GetButtonDown("Jump") && isGrounded())
             {
-                rb.AddForce(Vector2.up * 550f);
+                rb.velocity = Vector2.up * 10;
                 anim.SetBool("jump", true);
             }
-            anim.SetBool("land", isGrounded());
+            
+
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMult - 1) * Time.deltaTime;
+                anim.SetBool("land", false) ;
+            }
+            else if(rb.velocity.y>0 && !CrossPlatformInputManager.GetButton("Jump"))
+            {
+                
+                rb.velocity+= Vector2.up * Physics2D.gravity.y * (lowJumpMult - 1) * Time.deltaTime;
+            }
+            
+            
+                anim.SetBool("land", isGrounded());
+           
         }
     }
 
