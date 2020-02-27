@@ -3,28 +3,29 @@
 public class LevelGenerator : MonoBehaviour
 {
 
-	public Texture2D map;
 
+	public Texture2D[] map;
+	
 	public ColorToPrefab[] colorMappings;
 
-	void Start()
-	{   
-		GenerateLevel();
+	public void GenerateLevel(int[] seq)
+	{
+		for (int i = 0; i < seq.Length-1; i++)
+		{
+			
+			for (int x = 0; x < map[seq[i]].width; x++)
+			{
+				for (int y = 0; y < map[seq[i]].height; y++)
+				{
+					GenerateTile(x, y, i, map[seq[i]]);
+				}
+			
+			}
+		}
 		AstarPath.active.Scan();
 	}
 
-	void GenerateLevel()
-	{
-		for (int x = 0; x < map.width; x++)
-		{
-			for (int y = 0; y < map.height; y++)
-			{
-				GenerateTile(x, y);
-			}
-		}
-	}
-
-	void GenerateTile(int x, int y)
+	void GenerateTile(int x, int y, int offset, Texture2D map)
 	{
 		Color pixelColor = map.GetPixel(x, y);
 		if (pixelColor.a < 1)
@@ -37,7 +38,7 @@ public class LevelGenerator : MonoBehaviour
 			{
                 Vector3 position;
 				
-                position = new Vector3(x*5, y*5);
+                position = new Vector3((x + (map.width*offset))*5, y*5);
 
 				Instantiate(colorMapping.prefab[Random.Range(0, colorMapping.prefab.Length)], position, Quaternion.identity, transform);
 			}

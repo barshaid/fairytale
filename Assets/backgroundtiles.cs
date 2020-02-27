@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class backgroundtiles : MonoBehaviour
 {
-	public Texture2D map;
+	public Texture2D[] map;
 
 	public ColorToPrefab[] colorMappings;
 	float d = 1;
-	void Start()
-	{
-		GenerateLevel();
-		AstarPath.active.Scan();
-	}
+	
 
-	void GenerateLevel()
-	{
-		for (int x = 0; x < map.width; x++)
+	
+		public void GenerateLevel(int[] seq)
 		{
-			for (int y = 0; y < map.height; y++)
+			for (int i = 0; i < seq.Length - 1; i++)
 			{
-				GenerateTile(x, y);
-			}
-		}
-	}
 
-	void GenerateTile(int x, int y)
+				for (int x = 0; x < map[seq[i]].width; x++)
+				{
+					for (int y = 0; y < map[seq[i]].height; y++)
+					{
+						GenerateTile(x, y, i, map[seq[i]]);
+					}
+
+				}
+			}
+			AstarPath.active.Scan();
+		}
+	
+
+	void GenerateTile(int x, int y, int offset, Texture2D map)
 	{
 		d *= -1;
 		Color pixelColor = map.GetPixel(x, y);
@@ -42,15 +46,15 @@ public class backgroundtiles : MonoBehaviour
 				Vector3 position;
 				if (colorMapping.prefab[0].name.Substring(0, 1) == "w")
 				{
-					position = new Vector3(x * 5, y * 5, -10);
+					position = new Vector3((x + (map.width * offset)) * 5, y * 5, -10);
 				}
 				else if(colorMapping.prefab[0].name.Substring(0, 1) == "c")
 				{
-					position = new Vector3(x * 5, y * 5-10, 1);
+					position = new Vector3((x + (map.width * offset)) * 5, y * 5, 1);
 				}
 				else
 				{
-					position = new Vector3(x * 5, y * 5, d);
+					position = new Vector3((x + (map.width * offset)) * 5, y * 5, d);
 				}
 
 				Instantiate(colorMapping.prefab[Random.Range(0, colorMapping.prefab.Length)], position, Quaternion.identity, transform);

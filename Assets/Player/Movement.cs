@@ -5,7 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Movement : MonoBehaviour
 {
-    bool start = false;
+    public bool start = false;
     public float moveSpeed = 5f;
     Rigidbody2D rb;
     bool _canJump, _canWalk;
@@ -79,7 +79,7 @@ public class Movement : MonoBehaviour
 
             if (CrossPlatformInputManager.GetButtonDown("Jump") && isGrounded())
             {
-                rb.velocity = Vector2.up * 10;
+                rb.velocity = Vector2.up * 15;
                 anim.SetBool("jump", true);
             }
             

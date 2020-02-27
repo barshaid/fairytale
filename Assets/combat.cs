@@ -7,12 +7,14 @@ public class combat : MonoBehaviour
 {
     float knockbackcount;
     public float hp = 5;
+    public float maxhp = 5;
     public float basepower=1;
     public float power;
     float speed;
     public float ice=3;
     public float fire=3;
     public float wind=3;
+
     
     Animator anim;
     
@@ -27,80 +29,99 @@ public class combat : MonoBehaviour
     {
 
         anim.SetBool("wind", true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         anim.SetBool("wind", false);
+
+    }
+
+    IEnumerator timeout(string s)
+    {
+
+        GameObject.Find(s).GetComponent<UnityEngine.UI.Button>().interactable=false;
+        Debug.Log("test");
+        yield return new WaitForSeconds(5);
+        GameObject.Find(s).GetComponent<UnityEngine.UI.Button>().interactable = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hp > maxhp)
+            hp = maxhp;
 
-        if (knockbackcount <= 0)
+        if (GetComponent<Movement>().start)
         {
-           
-        }
-        else
-        {
-            
+            if (knockbackcount <= 0)
+            {
 
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-GetComponent<Rigidbody2D>().velocity.x * 1.5f, -GetComponent<Rigidbody2D>().velocity.x);
+            }
+            else
+            {
 
-            knockbackcount -= Time.deltaTime;
-        }
 
-        //GetComponentInChildren<SpriteRenderer>().color = Color.green;
-        if (GetComponentInChildren<SpriteRenderer>().color == Color.white)
-        {
-            power = basepower;
-            GetComponent<Movement>().moveSpeed = speed;
-        }
-        else if (GetComponentInChildren<SpriteRenderer>().color == Color.red)
-        {
-            power = basepower + 3;
-        }
-        else if (GetComponentInChildren<SpriteRenderer>().color == Color.green)
-        {
-            GetComponent<Movement>().moveSpeed = speed*2;
-        }
-        
-        
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-GetComponent<Rigidbody2D>().velocity.x * 1.5f, -GetComponent<Rigidbody2D>().velocity.x);
+
+                knockbackcount -= Time.deltaTime;
+            }
+
+
+            if (GetComponentInChildren<SpriteRenderer>().color == Color.white)
+            {
+                power = basepower;
+                GetComponent<Movement>().moveSpeed = speed;
+
+            }
+            else if (GetComponentInChildren<SpriteRenderer>().color == Color.red)
+            {
+                power = basepower + 3;
+
+            }
+            else if (GetComponentInChildren<SpriteRenderer>().color == Color.green)
+            {
+                GetComponent<Movement>().moveSpeed = speed * 2;
+            }
+
+
             anim.SetBool("atk", CrossPlatformInputManager.GetButtonDown("Sword"));
 
-   
 
-        if (CrossPlatformInputManager.GetButtonDown("Sword2"))
-        {
-            if (fire > 0)
+
+            if (CrossPlatformInputManager.GetButtonDown("Sword2"))
             {
-                anim.SetBool("atk2", true);
-                fire--;
+                if (fire > 0)
+                {
+                    StartCoroutine(timeout("Sword2"));
+                    anim.SetBool("atk2", true);
+                    fire--;
+                }
+            }
+            else
+            {
+                anim.SetBool("atk2", false);
+            }
+
+            if (CrossPlatformInputManager.GetButtonDown("Ice"))
+            {
+                if (ice > 0)
+                {
+                    StartCoroutine(timeout("Ice"));
+                    anim.SetBool("ice", true);
+                    ice--;
+                }
+            }
+            else
+            {
+                anim.SetBool("ice", false);
+            }
+
+            if (CrossPlatformInputManager.GetButtonDown("Wind"))
+            {
+                StartCoroutine(timeout("Wind"));
+                wind--;
+                StartCoroutine(speedup());
             }
         }
-        else
-        {
-            anim.SetBool("atk2", false);
-        }
-
-        if (CrossPlatformInputManager.GetButtonDown("Ice"))
-        {
-            if (ice > 0)
-            {
-                anim.SetBool("ice", true);
-                ice--;
-            }
-        }
-        else
-        {
-            anim.SetBool("ice", false);
-        }
-
-        if (CrossPlatformInputManager.GetButtonDown("Wind"))
-        {
-            wind--;
-            StartCoroutine(speedup());
-        }
-
 
     }
 

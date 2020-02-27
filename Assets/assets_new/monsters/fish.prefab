@@ -434,3 +434,4 @@ MonoBehaviour:
   hp: 5
   player: {fileID: 4212451514899186980, guid: 019913615e811304ab144a6857e553b7, type: 3}
   d: 50
+  power: 1
