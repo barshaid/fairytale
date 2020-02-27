@@ -8,33 +8,64 @@ public class powerOrb : MonoBehaviour
     {
         if (col.name == "sprite")
         {
-            if (gameObject.GetComponent<SpriteRenderer>().color == Color.white) {
+            if (gameObject.GetComponent<SpriteRenderer>().color == Color.white)
+            {
 
                 col.GetComponentInParent<combat>().hp++;
             }
-            else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(1, 0.237f, 0,1)).ToString())
+            else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(1, 0.237f, 0, 1)).ToString())
             {
                 col.GetComponentInParent<combat>().fire++;
             }
-        else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0, 1, 1)).ToString())
+            else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0, 1, 1)).ToString())
             {
                 col.GetComponentInParent<combat>().ice++;
-    }
-    else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0, 0.585f, 0)).ToString())
-    {
-        col.GetComponentInParent<combat>().wind++;
-    }
-            
-Destroy(gameObject);
+            }
+            else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0, 0.585f, 0)).ToString())
+            {
+                col.GetComponentInParent<combat>().wind++;
+            }
+            else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0, 0.585f, 0)).ToString())
+            {
+                col.GetComponentInParent<combat>().wind++;
+            }
+            else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
+            {
+                col.GetComponentInParent<combat>().hp -= 3;
+            }
 
+            Destroy(transform.parent.gameObject);
+
+        }
+    }
+    private void Start()
+    {
+        if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
+        {
+            transform.localScale /= 2;
         }
     }
     void Update()
     {
         Vector3 curr = transform.localPosition;
-        curr = Vector3.up * Mathf.Cos(Time.time);
+        if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
+        {
+            curr = Vector3.up * Mathf.Cos(Time.time * 6) + Vector3.left * Time.time * 3;
+        }
+        else
+        {
+            curr = Vector3.up * Mathf.Cos(Time.time);
+        }
         transform.localPosition = curr;
 
-       
+
+    }
+    void OnBecameInvisible()
+    {
+        if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

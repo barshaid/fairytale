@@ -15,6 +15,7 @@ public class randsequance : MonoBehaviour
         }
         GetComponent<LevelGenerator>().GenerateLevel(seq);
         GetComponent<backgroundtiles>().GenerateLevel(seq);
+       // GetComponent<interactables>().GenerateLevel(seq);
     }
 
     // Update is called once per frame
