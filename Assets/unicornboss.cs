@@ -6,14 +6,43 @@ using UnityStandardAssets.CrossPlatformInput;
 public class unicornboss : MonoBehaviour
 {
     public float hp;
-    public float maxhp=15;
-   public bool cutscene = false;
+    public float maxhp = 15;
+    public bool cutscene = false;
     GameObject player;
     GameObject dialog;
     public GameObject shadowOrb;
     public GameObject crystal;
-    public bool canShoot= true;
-    
+    public GameObject healthbar;
+    public GameObject winUI;
+    bool canShoot = true;
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //check for incomming attack by the player
+        if (col.CompareTag("attack"))
+        {
+            hp -= player.GetComponent<combat>().power;
+            if (player.GetComponentInChildren<SpriteRenderer>().color == Color.cyan)
+            {
+                StartCoroutine(freeze());
+            }
+        }
+
+    }
+
+    //freeze 
+    IEnumerator freeze()
+    {
+        GetComponent<Pathfinding.AIPath>().canMove = false;
+        GetComponent<SpriteRenderer>().color = Color.cyan;
+        float fps = GetComponent<Animator>().speed;
+        GetComponent<Animator>().speed = GetComponent<Animator>().speed / 2;
+
+        yield return new WaitForSeconds(5);
+
+        GetComponent<Animator>().speed = fps;
+    }
 
     void Start()
     {
@@ -23,16 +52,20 @@ public class unicornboss : MonoBehaviour
         dialog.SetActive(false);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        healthbar.GetComponent<UnityEngine.UI.Image>().fillAmount = hp / maxhp;
+
+        //activate cutscene once
         if (Vector3.Distance(transform.position, player.transform.position) < 15 && !cutscene)
         {
             cutscene = true;
             Time.timeScale = 0;
             dialog.SetActive(true);
         }
+
+
         if (canShoot)
         {
             canShoot = false;
@@ -41,14 +74,15 @@ public class unicornboss : MonoBehaviour
 
         if (hp <= 0)
         {
-            GameObject c = Instantiate(crystal, transform.parent);
-            
+            GameObject c = Instantiate(crystal, transform);
+
             Vector3 t;
             t = c.transform.localPosition;
             t.x *= 2;
             c.transform.localPosition = t;
             c.transform.parent = null;
             Destroy(gameObject);
+            winUI.SetActive(true);
         }
     }
 
@@ -58,10 +92,10 @@ public class unicornboss : MonoBehaviour
         Vector3 t;
         GameObject clone;
         clone = Instantiate(shadowOrb, transform);
-        clone.GetComponent<Rigidbody2D>().AddForce(Vector3.left *500);
+        clone.GetComponent<Rigidbody2D>().AddForce(Vector3.left * 500);
         t = clone.transform.localPosition;
         t.x -= 3;
-        clone.transform.localPosition=t;
+        clone.transform.localPosition = t;
         clone.transform.parent = null;
         yield return new WaitForSeconds(2);
         canShoot = true;

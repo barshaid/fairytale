@@ -22,7 +22,6 @@ public class backgroundtiles : MonoBehaviour
 					{
 						GenerateTile(x, y, i, map[seq[i]]);
 					}
-
 				}
 			}
 			

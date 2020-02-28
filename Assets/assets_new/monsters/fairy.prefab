@@ -507,10 +507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702dc8622e010d1499dc70801bc7d3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   maxhp: 10
   player: {fileID: 4212451514899186980, guid: 019913615e811304ab144a6857e553b7, type: 3}
   d: 60
   power: 1
+  healthbar: {fileID: 7890211213939277536}
 --- !u!1 &5964328901906682661
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,8 +14,9 @@ public class combat : MonoBehaviour
     public float ice=3;
     public float fire=3;
     public float wind=3;
-    public GameObject healthbar;
+    public GameObject healthbar, deathUI;
     public UnityEngine.UI.Text icec,firec, windc;
+    
     
     Animator anim;
     
@@ -54,7 +55,12 @@ public class combat : MonoBehaviour
         windc.text = wind.ToString();
         healthbar.GetComponent<UnityEngine.UI.Image>().fillAmount = hp / maxhp;
 
-
+        if (hp <= 0)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+            Time.timeScale = 0;
+            deathUI.SetActive(true);
+        }
         if (hp > maxhp)
             hp = maxhp;
 
@@ -72,8 +78,6 @@ public class combat : MonoBehaviour
 
         if (GetComponent<Movement>().start)
         {
-           
-
 
             if (GetComponentInChildren<SpriteRenderer>().color == Color.white)
             {
