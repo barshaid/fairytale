@@ -3,29 +3,32 @@
 public class interactables : MonoBehaviour
 {
 
-	public Texture2D map;
+	public Texture2D[] map;
 
 	public ColorToPrefab[] colorMappings;
 
-	void Start()
-	{
-		GenerateLevel();
-		AstarPath.active.Scan();
-	}
 
-	void GenerateLevel()
+
+	public void GenerateLevel(int[] seq)
 	{
-		for (int x = 0; x < map.width; x++)
+		for (int i = 0; i < seq.Length - 1; i++)
 		{
-			for (int y = 0; y < map.height; y++)
+
+			for (int x = 0; x < map[seq[i]].width; x++)
 			{
-				GenerateTile(x, y);
+				for (int y = 0; y < map[seq[i]].height; y++)
+				{
+					GenerateTile(x, y, i, map[seq[i]]);
+				}
+
 			}
 		}
+		
 	}
 
-	void GenerateTile(int x, int y)
-	{
+
+void GenerateTile(int x, int y, int offset, Texture2D map)
+{
 		Color pixelColor = map.GetPixel(x, y);
 		if (pixelColor.a < 1)
 			return;
@@ -37,7 +40,7 @@ public class interactables : MonoBehaviour
 			{
 				Vector3 position;
 
-				position = new Vector3(x * 5, y * 5);
+				position = new Vector3((x+(map.width*offset)) * 5, y * 5);
 
 				Instantiate(colorMapping.prefab[Random.Range(0, colorMapping.prefab.Length)], position, Quaternion.identity, transform);
 			}

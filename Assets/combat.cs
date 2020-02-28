@@ -14,15 +14,16 @@ public class combat : MonoBehaviour
     public float ice=3;
     public float fire=3;
     public float wind=3;
-
+    public GameObject healthbar;
+    public UnityEngine.UI.Text icec,firec, windc;
     
     Animator anim;
     
     void Start()
     {
+        Time.timeScale = 0;
         anim = GetComponentInChildren<Animator>();
         speed = GetComponent<Movement>().moveSpeed;
-    
     }
 
     IEnumerator speedup()
@@ -38,7 +39,7 @@ public class combat : MonoBehaviour
     {
 
         GameObject.Find(s).GetComponent<UnityEngine.UI.Button>().interactable=false;
-        Debug.Log("test");
+        
         yield return new WaitForSeconds(5);
         GameObject.Find(s).GetComponent<UnityEngine.UI.Button>().interactable = true;
 
@@ -47,23 +48,31 @@ public class combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        firec.text = fire.ToString();
+        icec.text = ice.ToString();
+        windc.text = wind.ToString();
+        healthbar.GetComponent<UnityEngine.UI.Image>().fillAmount = hp / maxhp;
+
+
         if (hp > maxhp)
             hp = maxhp;
 
+        if (knockbackcount <= 0)
+        {
+            GetComponent<Movement>().start = true;
+        }
+        else
+        {
+            GetComponent<Movement>().start = false;
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(-transform.localScale.x * 2f, 1), ForceMode2D.Impulse);
+
+            knockbackcount -= Time.deltaTime;
+        }
+
         if (GetComponent<Movement>().start)
         {
-            if (knockbackcount <= 0)
-            {
-
-            }
-            else
-            {
-
-
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-GetComponent<Rigidbody2D>().velocity.x * 1.5f, -GetComponent<Rigidbody2D>().velocity.x);
-
-                knockbackcount -= Time.deltaTime;
-            }
+           
 
 
             if (GetComponentInChildren<SpriteRenderer>().color == Color.white)
@@ -87,7 +96,7 @@ public class combat : MonoBehaviour
 
 
 
-            if (CrossPlatformInputManager.GetButtonDown("Sword2"))
+            if (CrossPlatformInputManager.GetButtonDown("Sword2") && GameObject.Find("Sword2").GetComponent<UnityEngine.UI.Button>().interactable)
             {
                 if (fire > 0)
                 {
@@ -101,7 +110,7 @@ public class combat : MonoBehaviour
                 anim.SetBool("atk2", false);
             }
 
-            if (CrossPlatformInputManager.GetButtonDown("Ice"))
+            if (CrossPlatformInputManager.GetButtonDown("Ice") && GameObject.Find("Ice").GetComponent<UnityEngine.UI.Button>().interactable)
             {
                 if (ice > 0)
                 {
@@ -115,11 +124,14 @@ public class combat : MonoBehaviour
                 anim.SetBool("ice", false);
             }
 
-            if (CrossPlatformInputManager.GetButtonDown("Wind"))
+            if (CrossPlatformInputManager.GetButtonDown("Wind") && GameObject.Find("Wind").GetComponent<UnityEngine.UI.Button>().interactable)
             {
-                StartCoroutine(timeout("Wind"));
-                wind--;
-                StartCoroutine(speedup());
+                if (wind > 0)
+                {
+                    StartCoroutine(timeout("Wind"));
+                    wind--;
+                    StartCoroutine(speedup());
+                }
             }
         }
 
@@ -129,7 +141,7 @@ public class combat : MonoBehaviour
     {
         if (col.gameObject.CompareTag("enemy"))
         {
-            knockbackcount = 0.5f;
+            knockbackcount = 0.3f;
             hp -= col.gameObject.GetComponent<enemy>().power;
         }
     }

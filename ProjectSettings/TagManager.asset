@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - attack
   - water
+  - crystal
   layers:
   - Default
   - TransparentFX

@@ -32,6 +32,9 @@ public class powerOrb : MonoBehaviour
             else if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
             {
                 col.GetComponentInParent<combat>().hp -= 3;
+            }else if (gameObject.CompareTag("crystal"))
+            {
+
             }
 
             Destroy(transform.parent.gameObject);
@@ -43,6 +46,8 @@ public class powerOrb : MonoBehaviour
         if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
         {
             transform.localScale /= 2;
+            destroy();
+
         }
     }
     void Update()
@@ -50,7 +55,8 @@ public class powerOrb : MonoBehaviour
         Vector3 curr = transform.localPosition;
         if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
         {
-            curr = Vector3.up * Mathf.Cos(Time.time * 6) + Vector3.left * Time.time * 3;
+            curr = Vector3.up * Mathf.Cos(Time.time * 6);
+
         }
         else
         {
@@ -60,12 +66,11 @@ public class powerOrb : MonoBehaviour
 
 
     }
-    void OnBecameInvisible()
+    IEnumerator destroy()
     {
-        if (gameObject.GetComponent<SpriteRenderer>().color.ToString() == (new Color(0.1415094f, 0.1415094f, 0.1415094f)).ToString())
-        {
-            Destroy(gameObject);
-        }
+        yield return new WaitForSeconds(3);
+        Destroy(transform.parent.gameObject);
+        
         
     }
 }

@@ -25,7 +25,7 @@ public class backgroundtiles : MonoBehaviour
 
 				}
 			}
-			AstarPath.active.Scan();
+			
 		}
 	
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     public float hp;
+    public float maxhp;
     Rigidbody2D rb;
     float knockbackcount;
     public GameObject player;
@@ -15,18 +16,23 @@ public class enemy : MonoBehaviour
     public float power = 1;
     float speed;
     float scale;
+    public GameObject healthbar;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("attack"))
         {
             knockbackcount = 0.5f;
-            hp-=player.GetComponent<combat>().power;
+            hp -= player.GetComponent<combat>().power;
             if (player.GetComponentInChildren<SpriteRenderer>().color == Color.cyan)
             {
                 Debug.Log(1);
                 StartCoroutine(freeze());
             }
+        }
+        if (col.CompareTag("Player"))
+        {
+            knockbackcount = 0.2f;
         }
     }
 
@@ -61,10 +67,15 @@ public class enemy : MonoBehaviour
         player = GameObject.Find("Player");
         GetComponent<Pathfinding.AIPath>().maxSpeed = GetComponent<Pathfinding.AIPath>().maxSpeed / transform.localScale.x;
         power = transform.localScale.x / power;
+        //healthbar = transform.GetChild(0).gameObject;
+        hp = maxhp;
+        healthbar = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
     }
 
     private void Update()
     {
+        
+        healthbar.GetComponent<UnityEngine.UI.Image>().fillAmount = hp / maxhp;
         if (!isfrozen)
         {
             if (Vector2.Distance(transform.position, player.transform.position) > d)
@@ -93,7 +104,7 @@ public class enemy : MonoBehaviour
             {
                 GetComponent<Pathfinding.AIPath>().canMove = false;
 
-                rb.velocity = new Vector2(-GetComponent<Pathfinding.AIPath>().velocity.x * 1.5f, -GetComponent<Pathfinding.AIPath>().velocity.x);
+                rb.velocity = new Vector2(-GetComponent<Pathfinding.AIPath>().velocity.x * 2f, -GetComponent<Pathfinding.AIPath>().velocity.x);
 
                 knockbackcount -= Time.deltaTime;
             }
