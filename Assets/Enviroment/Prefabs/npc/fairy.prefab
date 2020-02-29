@@ -188,7 +188,7 @@ MonoBehaviour:
   repathRate: 0.05
   canSearch: 0
   canMove: 1
-  maxSpeed: 7
+  maxSpeed: 4
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

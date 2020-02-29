@@ -56,7 +56,7 @@ public class enemy : MonoBehaviour
 
     private void Start()
     {
-        transform.localScale *= (Random.Range(5.0f, 15.0f) / 10.0f);
+        transform.localScale *= (Random.Range(5.0f, 10.0f) / 10.0f);
         scale = transform.localScale.x;
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
