@@ -8,14 +8,20 @@ public class randsequance : MonoBehaviour
     int[] seq;
     void Start()
     {
+        int i = 0;
         seq = new int[segments];
-        for(int i=0; i<segments; i++)
+        for(i=0; i<segments-1; i++)
         {
-            seq[i] = Random.Range(0, GetComponent<LevelGenerator>().map.Length);
+            
+            seq[i] = Random.Range(0, GetComponent<LevelGenerator>().map.Length-1);
+            Debug.Log(seq[i]);
         }
+        
+        seq[i] = GetComponent<LevelGenerator>().map.Length-1;
+        Debug.Log(seq[i]);
         GetComponent<LevelGenerator>().GenerateLevel(seq);
         GetComponent<backgroundtiles>().GenerateLevel(seq);
-       // GetComponent<interactables>().GenerateLevel(seq);
+        GetComponent<interactables>().GenerateLevel(seq);
         AstarPath.active.Scan();
     }
 

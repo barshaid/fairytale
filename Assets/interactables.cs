@@ -10,7 +10,7 @@ public class interactables : MonoBehaviour
 
 	public void GenerateLevel(int[] seq)
 	{
-		for (int i = 0; i < seq.Length - 1; i++)
+		for (int i = 0; i < seq.Length; i++)
 		{
 
 			for (int x = 0; x < map[seq[i]].width; x++)

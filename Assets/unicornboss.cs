@@ -66,7 +66,7 @@ public class unicornboss : MonoBehaviour
         }
 
 
-        if (canShoot)
+        if (canShoot && cutscene)
         {
             canShoot = false;
             StartCoroutine(shadowAttack());

@@ -30,10 +30,11 @@ public class PauseMenu : MonoBehaviour
         if (CrossPlatformInputManager.GetButtonDown("Tutorial"))
         {
             tut.SetActive(true);
-            currpage = 0;
+            pages[currpage].SetActive(true);
         }
         if (CrossPlatformInputManager.GetButtonDown("Done"))
         {
+            pages[currpage].SetActive(false);
             tut.SetActive(false);
             currpage = 0;
         }

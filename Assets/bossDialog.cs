@@ -9,7 +9,7 @@ public class bossDialog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialog1.SetActive(true);
     }
 
     // Update is called once per frame

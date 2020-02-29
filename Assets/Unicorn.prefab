@@ -633,7 +633,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8656909725188716979}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5d0f819787002a6499a78e1b3a005701, type: 2}
   m_CullingMode: 0
@@ -684,6 +684,7 @@ MonoBehaviour:
     type: 3}
   crystal: {fileID: 4118509789272521310, guid: ba08538cb0e057445ab758205c5e8598, type: 3}
   healthbar: {fileID: 1653365031304939464}
+  winUI: {fileID: 0}
 --- !u!50 &8656909725188716936
 Rigidbody2D:
   serializedVersion: 4

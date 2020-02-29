@@ -35,7 +35,7 @@ public class powerOrb : MonoBehaviour
 
             if (gameObject.CompareTag("crystal"))
             {
-                Debug.Log("1234");
+                
                 GameObject.Find("crysCounter").GetComponentInChildren<UnityEngine.UI.Text>().text = (35 + float.Parse(GameObject.Find("crysCounter").GetComponentInChildren<UnityEngine.UI.Text>().text)).ToString();
             }
 

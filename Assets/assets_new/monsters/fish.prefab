@@ -186,7 +186,7 @@ MonoBehaviour:
   radius: 2.76
   height: 2
   repathRate: 0.001
-  canSearch: 1
+  canSearch: 0
   canMove: 1
   maxSpeed: 7
   gravity: {x: NaN, y: NaN, z: NaN}
@@ -435,7 +435,7 @@ MonoBehaviour:
   hp: 5
   maxhp: 5
   player: {fileID: 4212451514899186980, guid: 019913615e811304ab144a6857e553b7, type: 3}
-  d: 50
+  d: 40
   power: 1
   healthbar: {fileID: 4541317973148697489}
 --- !u!1 &4541317973148697489
