@@ -1,6 +1,6 @@
 Fairytale
 Basic 2D sidescroller, levels are randomly generated from premade bitmaps with only one being the boss map. each segment can also be by using different variations of the same asset.
-each tilemap is made out of a 32x32 pixel picture containing colored pixel which correspond to a color in the colorkey map included.
+each tilemap is made out of a 32x32 pixel picture containing colored pixel which correspond to a color in the colorkey map included. essentialy the animator can creator more variations of the prefab(per game plot, i.e. icy ground, broken magma filled cave walls, different monster variations, etc) and create unqiue levels without the need to program them. 
 
 
 
