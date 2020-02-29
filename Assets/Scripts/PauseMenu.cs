@@ -56,7 +56,7 @@ public class PauseMenu : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButtonDown("Restart"))
         {
-            SceneManager.LoadScene("testscene");
+            SceneManager.LoadScene("Fairytale");
         }
 
         if (pages[0].activeSelf)

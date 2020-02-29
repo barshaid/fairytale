@@ -1,0 +1,43 @@
+ground
+high	50	0	0 
+low	150	0	0
+med	100	0	0
+full	0	0	0
+
+slopes
+h-l	0	150	0
+l-h	0	0	150
+
+h-m	0	100	0
+m-h	0	0	100
+
+m-l	0	50	0
+l-m	0	0	50
+
+
+walls
+wallf-l	50	50	0	
+wallf-r	0	50	50
+wallm-l 100	100	0
+wallm-r	0	100	100
+wallt-l	150	150	0	
+wallt-r	0	150	150
+
+
+water and bg	
+watersf	100	100	100
+waterfl	150	150	150
+cvwll	50	50	50
+tree	0	255	0
+
+hover platform
+left	30	0	0
+middle	0	30	0
+right	0	0	30
+
+npc and consumables
+fairy	0	40	0
+fish	0	0	40
+unicorn	40	0	0
+orbs	200	200	0
+crystal	200	0	200
